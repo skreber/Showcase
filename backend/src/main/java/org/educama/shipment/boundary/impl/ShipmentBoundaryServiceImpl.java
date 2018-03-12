@@ -11,6 +11,7 @@ import org.educama.shipment.model.Invoice;
 import org.educama.shipment.model.Shipment;
 import org.educama.shipment.process.ShipmentCaseEvaluator;
 import org.educama.shipment.process.tasks.CompleteShipmentOrderTask;
+import org.educama.shipment.process.tasks.OrganizeFlightTask;
 import org.educama.shipment.process.tasks.CreateInvoiceTask;
 import org.educama.shipment.repository.InvoiceRepository;
 import org.educama.shipment.repository.ShipmentRepository;
@@ -31,6 +32,8 @@ public class ShipmentBoundaryServiceImpl implements ShipmentBoundaryService {
     private CompleteShipmentOrderTask completeShipmentOrderTask;
 
     private CreateInvoiceTask createInvoiceTask;
+
+    private OrganizeFlightTask organizeFlightTask;
 
     private ShipmentRepository shipmentRepository;
 
@@ -116,6 +119,21 @@ public class ShipmentBoundaryServiceImpl implements ShipmentBoundaryService {
                 shipmentCaseEvaluator.reevaluateCase(trackingId);
             }
 
+            ShipmentResource convertedShipment = new ShipmentResource().fromShipment(shipment);
+            return convertedShipment;
+        }
+    }
+
+    @Override
+    public ShipmentResource addFlightToShipment(String trackingId, Shipment saveShipmentResource) {
+        Shipment shipment = shipmentRepository.findOneBytrackingId(trackingId);
+        if (shipment == null) {
+            throw new ResourceNotFoundException("Shipment not found");
+        } else {
+            shipment.shipmentFlight = saveShipmentResource.shipmentFlight;
+            shipment = shipmentRepository.saveAndFlush(shipment);
+            organizeFlightTask.complete(trackingId);
+            shipmentCaseEvaluator.reevaluateCase(trackingId);
             ShipmentResource convertedShipment = new ShipmentResource().fromShipment(shipment);
             return convertedShipment;
         }
