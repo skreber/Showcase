@@ -12,18 +12,40 @@ span {
 
 .right-side{
   display:inline-block;
+  margin-left: 6em;
 }
 
 .footer-class{
   display:inline-block;
+  margin-top: 4em;
 }
 
 .finish{
   font-weight: bold;
-  text-decoration: underline;
+  font-size: large;
+  //text-decoration: underline;
 }
 
-.start{
+.start-label{
   font-weight: bold;
-  text-decoration: underline;
+  font-size: large;
+  //text-decoration: underline;
+}
+.plane-class{
+  transform: rotate(45deg);
+}
+
+.main-div{
+  margin-top: 1em;
+}
+
+.top-div{
+  border-bottom: dashed;
+  border-bottom-color: lightgrey;
+  border-bottom-width: thin;
+  padding-bottom: 2em;
+}
+
+.bottom-div{
+  margin-top: 2em;
 }

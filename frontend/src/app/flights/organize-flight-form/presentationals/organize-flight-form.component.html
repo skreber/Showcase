@@ -1,40 +1,42 @@
 <p-panel header="Flugorganisieren {{'SHIPMENT-CAPTURE-COMPONENT_TITLE'|translate}}">
-  <div class="ui-g">
+  <div class="main-div ui-g">
 
     <div class="ui-g">
-      <div class="ui-g-12 ui-md-2">
-        <label>Flugnummer:</label>
+      <div class="top-div ui-g-12">
+        <div class="ui-g-12 ui-md-2">
+          <label>Flugnummer:</label>
+        </div>
+        <div class="ui-g-12 ui-md-10">
+          <input type="text" pInputText>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <label>Fluggesellschaft:</label>
+        </div>
+        <div class="ui-g-12 ui-md-10">
+          <input type="text" pInputText>
+        </div>
+        <div class="ui-g-12 ui-md-2">
+          <label>Preis:</label>
+        </div>
+        <div class="ui-g-12 ui-md-10">
+          <input type="text" pInputText>
+        </div>
       </div>
-      <div class="ui-g-12 ui-md-10 ">
-        <input type="text" pInputText>
-      </div>
-      <div class="ui-g-12 ui-md-2">
-        <label>Fluggesellschaft:</label>
-      </div>
-      <div class="ui-g-12 ui-md-10">
-        <input type="text" pInputText>
-      </div>
-      <div class="ui-g-12 ui-md-2">
-        <label>Preis:</label>
-      </div>
-      <div class="ui-g-12 ui-md-10">
-        <input type="text" pInputText>
-      </div>
-
 <!-----Center Bottom------->
-      <div class="ui-g">
+      <div class="bottom-div ui-g">
         <div class="ui-g-12 ui-md-5">
           <div class="ui-g-12">
-            <label class="start">START</label>
+            <label class="start-label">START</label>
+           <!-- <span class="ui-inputgroup-addon"><i class="fa fa-angle-right fa-2x"></i></span>-->
           </div>
           <div class="ui-g-12 ui-md-3">
-            <label>Flugnummer:</label>
+            <label>Stadt:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
             <input type="text" pInputText>
           </div>
           <div class="ui-g-12 ui-md-3">
-            <label>Kürzel:</label>
+            <label>Flughafen:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
             <input type="text" pInputText>
@@ -43,8 +45,7 @@
             <label>Datum:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
-            <input type="text" pInputText>
-            <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+            <!--<p-calendar></p-calendar>-->
           </div>
           <div class="ui-g-12 ui-md-3">
             <label>Uhrzeit:</label>
@@ -54,22 +55,24 @@
             <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
           </div>
         </div>
+<!----Middle part Plane icon-->
         <div class="plane-class ui-g-12 ui-md-1">
-          <span><i class="fa fa-plane fa-4x"></i></span>
+          <span class="plane-icon-span"><i class="fa fa-plane fa-4x"></i></span>
         </div>
-
+<!----Rightside Finish area-->
         <div class=" right-side ui-g-12 ui-md-5">
           <div class="ui-g-12">
-            <label class="finish" >ZIEL</label>
+            <label class="finish">ZIEL</label>
+            <!--<span class="ui-inputgroup-addon"><i class="fa fa-angle-right fa-lg"></i></span>-->
           </div>
           <div class="ui-g-12 ui-md-3">
-            <label>Flugnummer:</label>
+            <label>Stadt:</label>
           </div>
-          <div class="ui-g-12 ui-md-9 ">
+          <div class="ui-g-12 ui-md-9">
             <input type="text" pInputText>
           </div>
           <div class="ui-g-12 ui-md-3">
-            <label>Kürzel:</label>
+            <label>Flughafen:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
             <input type="text" pInputText>

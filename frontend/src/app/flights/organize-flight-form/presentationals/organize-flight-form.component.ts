@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: "educama-organize-flight-form",
@@ -6,6 +6,7 @@ import {Component, Input} from "@angular/core";
   styleUrls: ["../organize-flight-form-style.scss"]
 })
 export class OrganizeFlightFormComponent {
-  constructor() {
-  }
+
+  value: Date;
+
 }
