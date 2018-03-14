@@ -2,6 +2,7 @@ package org.educama.shipment.boundary;
 
 import org.educama.shipment.api.resource.InvoiceResource;
 import org.educama.shipment.api.resource.ShipmentResource;
+import org.educama.shipment.model.Flight;
 import org.educama.shipment.model.Invoice;
 import org.educama.shipment.model.Shipment;
 
@@ -58,6 +59,6 @@ public interface ShipmentBoundaryService {
      * @param trackingId to get required shipment
      * @return returns the  updated shipment as a resource
      */
-    ShipmentResource addFlightToShipment(String trackingId, Shipment saveShipmentResource);
+    ShipmentResource addFlightToShipment(String trackingId, Flight saveFlightResource);
 
 }
