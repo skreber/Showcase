@@ -7,6 +7,7 @@ import {Component, OnInit} from "@angular/core";
 })
 export class OrganizeFlightFormComponent {
 
-  value: Date;
+  date: Date;
+  time: Date;
 
 }

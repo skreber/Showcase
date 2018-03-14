@@ -45,14 +45,14 @@
             <label>Datum:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
-            <!--<p-calendar></p-calendar>-->
+            <p-calendar [showIcon]="true"></p-calendar>
           </div>
           <div class="ui-g-12 ui-md-3">
             <label>Uhrzeit:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
-            <input type="text" pInputText>
-            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+            <p-calendar [(ngModel)]="time" [timeOnly]="true"></p-calendar>
+            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o fa-lg"></i></span>
           </div>
         </div>
 <!----Middle part Plane icon-->
@@ -81,15 +81,14 @@
             <label>Datum:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
-            <input type="text" pInputText>
-            <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+            <p-calendar [(ngModel)]="date" [showIcon]="true"></p-calendar>
           </div>
           <div class="ui-g-12 ui-md-3">
             <label>Uhrzeit:</label>
           </div>
           <div class="ui-g-12 ui-md-9">
-            <input type="text" pInputText>
-            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+            <p-calendar [(ngModel)]="time" [timeOnly]="true"></p-calendar>
+            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o fa-lg"></i></span>
           </div>
         </div>
       </div>

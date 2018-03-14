@@ -1,5 +1,6 @@
 import {NgModule, ModuleWithProviders} from "@angular/core";
 import {CommonModule} from "@angular/common";
+import {CalendarModule} from "primeng/primeng";
 import {
     AutoCompleteModule,
     BlockUIModule,
@@ -17,7 +18,9 @@ import {
 } from "primeng/primeng";
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [CommonModule,
+    CalendarModule
+    ],
     exports: [
         AutoCompleteModule,
         BlockUIModule,
@@ -31,6 +34,7 @@ import {
         InputTextareaModule,
         MenubarModule,
         PanelModule,
+        CalendarModule,
         TabViewModule
     ]
 })
