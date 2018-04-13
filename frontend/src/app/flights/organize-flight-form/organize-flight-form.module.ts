@@ -3,7 +3,6 @@ import {OrganizeFlightFormComponent} from "./presentationals/organize-flight-for
 import {NgModule} from "@angular/core";
 import {OrganizeFlightFormPageComponent} from "./container/organize-flight-form-page.component";
 
-
 @NgModule({
   imports: [
     SharedModule
