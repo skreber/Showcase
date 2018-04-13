@@ -72,6 +72,6 @@ export class ShipmentService {
   *  @return Observable of updated shipment
   */
   public createInvoice(trackingId: string, invoice: InvoiceResource): Observable<InvoiceResource> {
-    return this._restClientService.put(this.SHIPMENT_RESOURCE_PATH + "/invoice/" + trackingId, JSON.stringify(invoice));
+    return this._restClientService.post(this.SHIPMENT_RESOURCE_PATH + "/invoice/" + trackingId, JSON.stringify(invoice));
   }
 }

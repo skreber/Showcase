@@ -1,10 +1,8 @@
 package org.educama.shipment.api.resource;
 
 import org.educama.shipment.model.Invoice;
-import org.educama.shipment.model.Shipment;
 
 import java.time.Instant;
-import java.util.Date;
 
 /**
  * REST-Resource for create or put Methods for invoices.

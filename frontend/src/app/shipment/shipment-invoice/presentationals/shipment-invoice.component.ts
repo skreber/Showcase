@@ -30,8 +30,8 @@ export class ShipmentInvoiceComponent {
 
   public saveInvoice() {
     this.createInvoiceEvent.emit(
-        new InvoiceResource(
-        null, this.trackingId, this.invoiceCreationDate, this.preCarriage, this.exportInsurance, this.exportCustomsClearance,
+      new InvoiceResource(
+        this.trackingId, "2015-06-02T21:34:33.616Z", this.preCarriage, this.exportInsurance, this.exportCustomsClearance,
         this.flightPrice, this.importInsurance, this.importCustomsClearance, this.onCarriage, this.managementFee, this.serviceFee,
         this.discount
       ));

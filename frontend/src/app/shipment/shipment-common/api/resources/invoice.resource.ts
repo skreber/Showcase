@@ -1,11 +1,10 @@
 export class InvoiceResource {
 
 
-  constructor(invoiceNumber: string, trackingId: string, invoiceCreationDate: string,
+  constructor(trackingId: string, invoiceCreationDate: string,
               preCarriage: number, exportInsurance: number, exportCustomsClearance: number,
               flightPrice: number, importInsurance: number, importCustomsClearance: number,
               onCarriage: number, managementFee: number, serviceFee: number, discount: number) {
-    this.invoiceNumber = invoiceNumber;
     this.trackingId = trackingId;
     this.invoiceCreationDate = invoiceCreationDate;
     this.preCarriage = preCarriage;
@@ -20,7 +19,6 @@ export class InvoiceResource {
     this.discount = discount;
   }
 
-  public invoiceNumber: string;
   public trackingId: string;
   public invoiceCreationDate: string;
   public preCarriage: number;
