@@ -7,7 +7,8 @@ import * as actions from "../store/shipments/shipment-list-page/shipment-list-pa
 import {ShipmentListSlice} from "../store/shipments/shipment-list-page/shipment-list-page.slice";
 import * as organizeFlightactions from "../store/shipments/organize-flight-page/organize-flight-page.actions";
 import * as invoiceActions from "../store/shipments/invoice-page/invoice-page.actions";
-import {RequestShipmentsFailedAction, RequestShipmentsSuccessfulAction
+import {
+  RequestShipmentsFailedAction, RequestShipmentsSuccessfulAction
 } from "../store/shipments/shipment-list-page/shipment-list-page.actions";
 import {Observable} from "rxjs/Observable";
 import {LoadShipmentSuccessfullAction} from "../store/shipments/shipment-capture-page/shipment-capture-page.actions";
@@ -19,52 +20,54 @@ import {CreateInvoiceSuccessfulAction} from "../store/shipments/invoice-page/inv
 @Injectable()
 export class ShipmentListEffect {
 
-    constructor(private _actions: Actions,
-                private _shipmentService: ShipmentService,
-                private _store: Store<State>) {
-    }
+  constructor(private _actions: Actions,
+              private _shipmentService: ShipmentService,
+              private _store: Store<State>) {
+  }
 
-    private lastId: string;
+  private lastId: string;
 
 
-    @Effect() loadShipments = this._actions
-          .ofType(actions.REQUEST_SHIPMENTS)
-          .withLatestFrom(this._store, (action, state) => state.shipmentListSlice)
-          .switchMap((shipmentListSlice: ShipmentListSlice) => {
-              return this._shipmentService.findShipments();
-          })
-          .map(shipmentListResource => new RequestShipmentsSuccessfulAction(shipmentListResource))
-          .catch(() => Observable.of(new RequestShipmentsFailedAction()));
+  @Effect() loadShipments = this._actions
+    .ofType(actions.REQUEST_SHIPMENTS)
+    .withLatestFrom(this._store, (action, state) => state.shipmentListSlice)
+    .switchMap((shipmentListSlice: ShipmentListSlice) => {
+      return this._shipmentService.findShipments();
+    })
+    .map(shipmentListResource => new RequestShipmentsSuccessfulAction(shipmentListResource))
+    .catch(() => Observable.of(new RequestShipmentsFailedAction()));
 
-    @Effect() loadUniqueShipment = this._actions
-      .ofType(actions.REQUEST_SINGLE_SHIPMENT)
-      .map((action: actions.RequestSingleShipment) => action.payload)
-      .switchMap((trackingId: string) => {
-        return this._shipmentService.findShipmentbyId(trackingId);
-      })
-      .map(shipmentListResource =>
-        new LoadShipmentSuccessfullAction(shipmentListResource)
-      );
+  @Effect() loadUniqueShipment = this._actions
+    .ofType(actions.REQUEST_SINGLE_SHIPMENT)
+    .map((action: actions.RequestSingleShipment) => action.payload)
+    .switchMap((trackingId: string) => {
+      return this._shipmentService.findShipmentbyId(trackingId);
+    })
+    .map(shipmentListResource =>
+      new LoadShipmentSuccessfullAction(shipmentListResource)
+    );
 
-    @Effect() addFLightToShipment = this._actions
-      .ofType(organizeFlightactions.SAVE_FLIGHT_ACTION)
-      .switchMap((action: organizeFlightactions.SaveFlightAction) => {
-        this.lastId = action.trackingId;
-        return this._shipmentService.addFlightToShipment(action.trackingId, action.payload);
-      })
-      .map(taskListSlice => new SaveFlightSuccessfultAction(taskListSlice.shipmentFlight));
+  @Effect() addFLightToShipment = this._actions
+    .ofType(organizeFlightactions.SAVE_FLIGHT_ACTION)
+    .switchMap((action: organizeFlightactions.SaveFlightAction) => {
+      this.lastId = action.trackingId;
+      return this._shipmentService.addFlightToShipment(action.trackingId, action.payload);
+    })
+    .map(taskListSlice => new SaveFlightSuccessfultAction(taskListSlice.shipmentFlight));
 
-    @Effect()
-    loadActiveTasks = this._actions
-      .ofType(organizeFlightactions.SAVE_FLIGHT_SUCCESSFUL_ACTION)
-      .map((action: organizeFlightactions.SaveFlightSuccessfultAction) =>
-        new RequestTasksForShipmentAction(this.lastId));
+  @Effect()
+  loadActiveTasks = this._actions
+    .ofType(organizeFlightactions.SAVE_FLIGHT_SUCCESSFUL_ACTION, invoiceActions.CREATE_INVOICE_SUCCESSFUL_ACTION)
+    .map((action: organizeFlightactions.SaveFlightSuccessfultAction) =>
+      new RequestTasksForShipmentAction(this.lastId));
 
-    @Effect()
-    loadCompletedTasks = this._actions
-      .ofType(organizeFlightactions.SAVE_FLIGHT_SUCCESSFUL_ACTION)
-      .map(() =>
-        new RequestCompletedTaskForShipmentAction(this.lastId));
+
+  @Effect()
+  loadCompletedTasks = this._actions
+    .ofType(organizeFlightactions.SAVE_FLIGHT_SUCCESSFUL_ACTION, invoiceActions.CREATE_INVOICE_SUCCESSFUL_ACTION)
+    .map(() =>
+      new RequestCompletedTaskForShipmentAction(this.lastId));
+
 
   @Effect()
   createInvoice = this._actions

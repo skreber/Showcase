@@ -5,9 +5,13 @@ import {Subscription} from "rxjs/Subscription";
 import {ShipmentInvoicePageModel} from "./shipment-invoice-page.model";
 import {Store} from "@ngrx/store";
 import {State} from "../../../app.reducers";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {InvoiceResource} from "../../shipment-common/api/resources/invoice.resource";
 import {CreateInvoiceAction} from "../../shipment-common/store/shipments/invoice-page/invoice-page.actions";
+import {
+  RequestTasksAction,
+  RequestTasksForShipmentAction
+} from "../../shipment-common/store/tasks/task-list-page.actions";
 
 @Component({
   selector: "educama-shipment-invoice-page",
@@ -23,6 +27,7 @@ export class ShipmentInvoicePageComponent implements OnDestroy {
   public enabledTaskListModel: ShipmentInvoicePageModel = new ShipmentInvoicePageModel();
 
   constructor(private _store: Store<State>,
+              private _router: Router,
               private _activatedRoute: ActivatedRoute) {
 
     this.invoiceListSlice = this._store.select(state => state.invoicePageSlice);
@@ -41,8 +46,12 @@ export class ShipmentInvoicePageComponent implements OnDestroy {
   // ***************************************************
 
     public onCreateInvoiceEvent(invoiceResource: InvoiceResource) {
+    var  trackingId = "";
     this._activatedRoute.parent.params.subscribe(params => {
       this._store.dispatch(new CreateInvoiceAction(params["id"], invoiceResource));
+      trackingId = params["id"];
       });
+
+      this._router.navigate(["/caseui/" + trackingId]);
   }
 }
