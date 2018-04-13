@@ -1,0 +1,201 @@
+<p-panel header="{{'CREATE-INVOICE' | translate}}">
+  <div class="ui-g">
+    <!---Top Information--->
+    <div class="ui-g-12">
+      <div class="ui-g-12 ui-md-2">
+        <label>{{'INVOICE-NUMBER' | translate}}</label>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <input
+          pInputText [disabled]="disabled"
+          [(ngModel)]="invoiceNumber"
+          type="text"
+        />
+      </div>
+      <div class="ui-g-12 ui-md-2">
+        <label>{{'INVOICE-CREATION-DATE' | translate}}</label>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <p-calendar [(ngModel)]="invoiceCreationDate"
+                    [showIcon]="true"
+        ></p-calendar>
+      </div>
+    </div>
+    <!----Table---->
+    <!--
+    <p-table [columns]="cols" [value]="cars">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+          <th style="width:3em"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
+          <td>
+            <button pButton icon="fa-trash" (click)="deleteInvoiceRowItem(rowData)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>-->
+    <div class="ui-g-12" style="border-bottom: solid; border-color: lightgrey;">
+      <div class="ui-g-12 ui-md-2" style="font-weight: bold; text-decoration-style: solid;">
+        <label>{{'INVOICE-SUM' | translate}}</label>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <input
+               pInputText [disabled]="disabled"
+               [(ngModel)]="invoiceSum"
+               type="text"
+        />
+      </div>
+    </div>
+    <!----Input Dialog---->
+    <div class="ui-g-12">
+
+      <p-dialog header="{{'CREATE-INVOICE' | translate}}" [(visible)]="displayDialog" [responsive]="true"
+                showEffect="fade" [modal]="true" [width]="900">
+        <div class="ui-g">
+          <div class="ui-g-12">
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'PRE-CARRIGE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="preCarriage"
+                type="text"
+              />
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'EXPORT-INSURANCE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="exportInsurance"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'EXPORT-CUSTOMS-CLEARANCE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="exportCustomersClearance"
+                type="text"
+              />
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'FLIGHT-PRICE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="flightPrice"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'IMPORT-INSURANCE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="importInsurance"
+                type="text"
+              />
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'IMPORT-CUSTOMS-CLEARANCE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="importCustomsClearance"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'ON-CARRIGE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="onCarriage"
+                type="text"
+              />
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'MANAGEMENT-FEE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="managementFee"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'SERVICE-FEE' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="serviceFee"
+                type="text"
+              />
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <label>{{'DISCOUNT' | translate}}</label>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+              <input
+                pInputText
+                [(ngModel)]="discount"
+                type="text"
+              />
+            </div>
+          </div>
+        </div>
+        <p-footer>
+          <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa-check" (click)="saveInvoice()" label="Save"></button>
+          </div>
+        </p-footer>
+      </p-dialog>
+    </div>
+    <div class="ui-g-12 ui-md-2">
+      <button type="button" pButton icon="fa-plus" (click)="addInvoiceItem()" label="Hinzufügen"></button>
+    </div>
+    <!---Footer--->
+    <div class="ui-g-12">
+      <button style="float:right;" class="save-button" pButton type="button" label="Abschließen" icon="fa-check"
+              class="ui-button-success" iconPos="right"
+              (click)="saveInvoice()"
+      ></button>
+      <button style="float:right;" class="abord-button" pButton type="button" label="Abbrechen" icon="fa-times"
+              class="ui-button-danger" iconPos="right"
+              (click)="cancleInvoice()"
+      ></button>
+      <button style="float:right;" class="print-button" pButton type="button" icon="fa-print"
+              class="ui-button-info" iconPos="right"
+              (click)="printInvoice()"
+      ></button>
+    </div>
+  </div>
+</p-panel>

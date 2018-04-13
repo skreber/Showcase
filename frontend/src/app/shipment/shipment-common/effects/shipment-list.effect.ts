@@ -6,6 +6,7 @@ import {State} from "../../../app.reducers";
 import * as actions from "../store/shipments/shipment-list-page/shipment-list-page.actions";
 import {ShipmentListSlice} from "../store/shipments/shipment-list-page/shipment-list-page.slice";
 import * as organizeFlightactions from "../store/shipments/organize-flight-page/organize-flight-page.actions";
+import * as invoiceActions from "../store/shipments/invoice-page/invoice-page.actions";
 import {RequestShipmentsFailedAction, RequestShipmentsSuccessfulAction
 } from "../store/shipments/shipment-list-page/shipment-list-page.actions";
 import {Observable} from "rxjs/Observable";
@@ -13,6 +14,7 @@ import {LoadShipmentSuccessfullAction} from "../store/shipments/shipment-capture
 import {RequestTasksForShipmentAction} from "../store/tasks/task-list-page.actions";
 import {SaveFlightSuccessfultAction} from "../store/shipments/organize-flight-page/organize-flight-page.actions";
 import {RequestCompletedTaskForShipmentAction} from "../store/completed-tasks/completed-task-list-page.actions";
+import {CreateInvoiceSuccessfulAction} from "../store/shipments/invoice-page/invoice-page.actions";
 
 @Injectable()
 export class ShipmentListEffect {
@@ -63,4 +65,12 @@ export class ShipmentListEffect {
       .ofType(organizeFlightactions.SAVE_FLIGHT_SUCCESSFUL_ACTION)
       .map(() =>
         new RequestCompletedTaskForShipmentAction(this.lastId));
+
+  @Effect()
+  createInvoice = this._actions
+    .ofType(invoiceActions.CREATE_INVOICE_ACTION)
+    .switchMap((action: invoiceActions.CreateInvoiceAction) => {
+      return this._shipmentService.createInvoice(action.trackingID, action.payload);
+    })
+    .map(invoice => new CreateInvoiceSuccessfulAction(invoice));
 }

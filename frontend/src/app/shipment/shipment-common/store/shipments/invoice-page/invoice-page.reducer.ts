@@ -1,35 +1,19 @@
 import {ActionReducer, Action} from "@ngrx/store";
-import * as actions from "./shipment-list-page.actions";
-import {SHIPMENT_LIST_SLICE_INITIAL_STATE} from "./shipment-list-page.initial-state";
-import {ShipmentListSlice} from "./shipment-list-page.slice";
+import * as actions from "./invoice-page.actions";
+import {INVOICE_LIST_SLICE_INITIAL_STATE} from "./invoice-page.initial-state";
+import {InvoicePageSlice, } from "./invoice-page.slice";
 
-export function shipmentListPageReducer(state: ShipmentListSlice = SHIPMENT_LIST_SLICE_INITIAL_STATE,
-                                        action: Action): ShipmentListSlice {
+export function invoicePageReducer(state: InvoicePageSlice = INVOICE_LIST_SLICE_INITIAL_STATE,
+                                        action: Action): InvoicePageSlice {
   switch (action.type) {
-    case actions.INITIALIZE_SHIPMENT_LIST:
-      return SHIPMENT_LIST_SLICE_INITIAL_STATE;
-    case actions.REQUEST_SHIPMENTS:
+    case actions.CREATE_INVOICE_SUCCESSFUL_ACTION:
+      const saveFlightSuccessfultAction = action as actions.CreateInvoiceSuccessfulAction;
       return Object.assign({}, state, {
-        loading: true
-      });
-    case actions.REQUEST_SHIPMENTS_SUCCESSFUL:
-      const requestShipmentsSuccessfulAction = action as actions.RequestShipmentsSuccessfulAction;
-      return Object.assign({}, state, {
-        shipmentList: requestShipmentsSuccessfulAction.payload.shipments,
-        loading: false
-      });
-    case actions.REQUEST_SHIPMENTS_FAILED:
-      return Object.assign({}, state, {
-        loading: false
-      });
-    case actions.LOAD_SINGLE_SHIPMENT:
-      const loadSingleShipmentAction = action as actions.LoadSingleShipmentAction;
-      return Object.assign({}, state, {
-        shipment: loadSingleShipmentAction.payload
+        invoice: saveFlightSuccessfultAction.payload
       });
     default:
       return state;
   }
 }
 
-export const SHIPMENT_LIST_PAGE_REDUCER: ActionReducer<ShipmentListSlice> = shipmentListPageReducer;
+export const INVOICE_PAGE_REDUCER: ActionReducer<InvoicePageSlice> = invoicePageReducer;

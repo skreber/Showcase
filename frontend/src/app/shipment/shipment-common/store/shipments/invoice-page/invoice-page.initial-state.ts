@@ -1,6 +1,6 @@
-import {ShipmentListSlice} from "./shipment-list-page.slice";
+import {InvoicePageSlice} from "./invoice-page.slice";
+import {InvoiceResource} from "../../../api/resources/invoice.resource";
 
-export const SHIPMENT_LIST_SLICE_INITIAL_STATE: ShipmentListSlice = {
-  shipmentList: [],
-  loading: false
+export const INVOICE_LIST_SLICE_INITIAL_STATE: InvoicePageSlice = {
+  invoice: null
 };
