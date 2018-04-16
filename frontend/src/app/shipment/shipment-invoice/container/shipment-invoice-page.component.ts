@@ -46,7 +46,7 @@ export class ShipmentInvoicePageComponent implements OnDestroy {
   // ***************************************************
 
     public onCreateInvoiceEvent(invoiceResource: InvoiceResource) {
-    var  trackingId = "";
+    let  trackingId = "";
     this._activatedRoute.parent.params.subscribe(params => {
       this._store.dispatch(new CreateInvoiceAction(params["id"], invoiceResource));
       trackingId = params["id"];

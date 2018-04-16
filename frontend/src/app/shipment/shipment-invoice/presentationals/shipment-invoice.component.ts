@@ -6,7 +6,7 @@ import {InvoiceResource} from "../../shipment-common/api/resources/invoice.resou
   templateUrl: "./shipment-invoice.component.html"
 })
 export class ShipmentInvoiceComponent {
-  public disabled: boolean = true;
+  public disabled = true;
   public displayDialog: boolean;
   private trackingId: string;
   public invoiceCreationDate: string;

@@ -53,7 +53,7 @@ export class ShipmentListEffect {
       this.lastId = action.trackingId;
       return this._shipmentService.addFlightToShipment(action.trackingId, action.payload);
     })
-    .map(taskListSlice => new SaveFlightSuccessfultAction(taskListSlice.shipmentFlight));
+    .map(taskListSlice => new SaveFlightSuccessfultAction(taskListSlice.shipmentFlight, taskListSlice.trackingId));
 
   @Effect()
   loadActiveTasks = this._actions
