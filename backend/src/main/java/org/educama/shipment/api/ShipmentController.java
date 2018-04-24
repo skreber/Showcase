@@ -6,7 +6,10 @@ import org.educama.shipment.api.resource.SaveFlightResource;
 import org.educama.shipment.api.resource.SaveShipmentResource;
 import org.educama.shipment.api.resource.ShipmentListResource;
 import org.educama.shipment.api.resource.ShipmentResource;
+import org.educama.shipment.api.resource.InvoiceResource;
+import org.educama.shipment.api.resource.SaveInvoiceResource;
 import org.educama.shipment.boundary.ShipmentBoundaryService;
+import org.educama.shipment.model.Invoice;
 import org.educama.shipment.boundary.ShipmentTaskBoundaryService;
 import org.educama.shipment.model.Flight;
 import org.educama.shipment.model.Shipment;
@@ -83,6 +86,20 @@ public class ShipmentController {
     public ShipmentResource getShipment(@PathVariable("trackingId") String trackingId) {
         ShipmentResource shipment = shipmentBoundaryService.getShipment(trackingId);
         return shipment;
+    }
+
+    /**
+     * API call to create one invoice.
+     *
+     * @returns the invoice converted into the API-Model (Resource)
+     */
+    @RequestMapping(value = "invoice/{trackingId}", method = RequestMethod.POST)
+    public InvoiceResource createInvoice(@PathVariable("trackingId") String trackingId,
+                                         @Valid @RequestBody SaveInvoiceResource saveInvoiceResource) {
+
+        Invoice convertedInvoice = saveInvoiceResource.toInvoice();
+        InvoiceResource createdInvoice = shipmentBoundaryService.createInvoice(trackingId, convertedInvoice);
+        return createdInvoice;
     }
 
     /**
