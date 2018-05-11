@@ -5,11 +5,13 @@ import {CaseUIShipmentDetailModule} from "./case-uI-shipment-detail/case-ui-ship
 import {ROUTING} from "../../app.routes";
 import {NavigationModule} from "../../navigation/navigation.module";
 import {SharedModule} from "primeng/primeng";
+import {CaseUiCenterAreaModule} from "./case-ui-center-area/case-ui-center-area.module";
 
 @NgModule({
   imports: [
     LeftSideBarModule,
     CaseUIShipmentDetailModule,
+    CaseUiCenterAreaModule,
     NavigationModule,
     ROUTING
   ],

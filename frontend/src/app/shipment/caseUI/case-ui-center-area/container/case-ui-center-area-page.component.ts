@@ -12,23 +12,24 @@ import {
 } from "../../../shipment-common/store/shipments/shipment-capture-page/shipment-capture-page.actions";
 import {CaseUiCenterAreaPageModel} from "./case-ui-center-area-page.model";
 import {TaskListSlice} from "../../../shipment-common/store/tasks/task-list-page.slice";
+import {InvoicePageSlice} from "../../../shipment-common/store/shipments/invoice-page/invoice-page.slice";
 
 
 @Component({
-  selector: "educama-caseui-shipment-detail-page",
-  templateUrl: "./case-ui-shipment-detail-page.component.html"
+  selector: "educama-caseui-center-area-page",
+  templateUrl: "./case-ui-center-area-page.component.html"
 })
-export class CaseUIShipmentDetailPageComponent implements OnInit, OnDestroy, OnChanges {
+export class CaseUiCenterAreaPageComponent implements OnInit, OnDestroy, OnChanges {
 
   // TODO: Invoice slice subscr.
 
   // relevant slice of store and subscription for this slice
   public shipmentSlice: Observable<ShipmentCaptureSlice>;
+  public invoiceSlice: Observable<InvoicePageSlice>;
 
 
   public shipmentSliceSubscription: Subscription;
   public invoiceSliceSubscription: Subscription;
-  public selectedTask: string;
 
   // model for the page
   public shipmentDetailInfoModel: CaseUiCenterAreaPageModel = new CaseUiCenterAreaPageModel();
@@ -40,13 +41,17 @@ export class CaseUIShipmentDetailPageComponent implements OnInit, OnDestroy, OnC
     this.shipmentSliceSubscription = this.shipmentSlice.subscribe(
       shipmentCaptureSlice => this.updateShipmentModel(shipmentCaptureSlice)
     );
+
+    this.invoiceSlice = this._store.select(state => state.invoicePageSlice);
+    this.invoiceSliceSubscription = this.invoiceSlice.subscribe(
+      invoiceSlice => this.invoiceSlice
+    );
   }
 
   public ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
         this._store.dispatch(new ReloadStoreAction(params["id"]));
       });
-    this.selectedTask = this._activatedRoute.url[2];
   }
 
   public ngOnChanges() {
@@ -57,6 +62,7 @@ export class CaseUIShipmentDetailPageComponent implements OnInit, OnDestroy, OnC
 
   public ngOnDestroy() {
     this.shipmentSliceSubscription.unsubscribe();
+    this.invoiceSliceSubscription.unsubscribe();
   }
 
   // ***************************************************
@@ -70,5 +76,9 @@ export class CaseUIShipmentDetailPageComponent implements OnInit, OnDestroy, OnC
 
   private updateShipmentModel(shipmentCaptureSlice: ShipmentCaptureSlice) {
     this.shipmentDetailInfoModel.shipment = shipmentCaptureSlice.shipment;
+  }
+
+  private updateInvoiceModel(invoicePageSlice: InvoicePageSlice) {
+    this.shipmentDetailInfoModel.invoice = invoicePageSlice.invoice;
   }
 }
