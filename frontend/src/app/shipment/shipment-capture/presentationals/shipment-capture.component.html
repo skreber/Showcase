@@ -1,17 +1,28 @@
 <h1 *ngIf="editorMode === 0">{{'SHIPMENT-CAPTURE-COMPONENT_TITLE-CREATE' | translate}}</h1>
 <div class="shipment-capture-component">
     <form name="form" [formGroup]="shipmentCaptureForm" class="shipment-capture-form">
-        <p-tabView>
-            <p-tabPanel header="{{'SHIPMENT_CAPTURE_COMPONENT-PANEL_SENDER_RECEIVER_ADDRESS' | translate}}">
-                <p-panel header="{{'SHIPMENT_CAPTURE_COMPONENT-PANEL_SENDER_RECEIVER_ADDRESS' | translate}}">
-                    <div class="ui-g ui-fluid">
+
+                    <div class="ui-g ui-fluid" style="">
 
                         <!-- Sender Address -->
                         <div class="ui-g-12 ui-lg-6">
-
-                            <div class="ui-g-12">
-                                <h4><label>{{'SHIPMENT-RESOURCE_SENDER' | translate}}</label></h4>
+                          <div class="ui-g">
+                            <div class="ui-g-12 ui-md-3" style="margin-top: -1.5em;">
+                              <h4><label>{{'SHIPMENT-RESOURCE_SENDER' | translate}}</label></h4>
                             </div>
+                            <div class="ui-g-12 ui-md-9" style="padding-top: 1.7em; margin-top: -1.5em;">
+                              <p-radioButton [(ngModel)]="customerTypeEnum"
+                                             name="customerTypeEnum"
+                                             value="RECEIVER"
+                                             formControlName="customerTypeEnum"
+                                             label="{{'SHIPMENT_CAPTURE_COMPONENT_CLIENT' | translate}}"
+                                             id="shipment-capture-component_receiver-is-customer"
+                              >
+                              </p-radioButton>
+                            </div>
+                          </div>
+
+
 
                             <div class="ui-g-9">
                                 <p-autoComplete formControlName="sender"
@@ -27,9 +38,6 @@
                                         label="{{'GENERIC_NEW' | translate}}"></button>
                             </div>
 
-                            <div class="ui-g-12">
-                                <h4><label>{{'SHIPMENT-RESOURCE_SENDER-ADDRESS' | translate}}</label></h4>
-                            </div>
 
                             <div class="ui-g-12 ui-md-12 ui-xl-3">
                                 <label>{{'SHIPMENT-RESOURCE_SENDER-STREET-NUMBER' | translate}}</label>
@@ -69,17 +77,25 @@
                                        [ngModelOptions]="{standalone: true}"
                                        id="shipment-capture-component_sender-city"
                                 >
-
                             </div>
                         </div>
-
                         <!-- Receiver Address -->
                         <div class="ui-g-12 ui-lg-6">
-
-                            <div class="ui-g-12">
-                                <h4><label>{{'SHIPMENT-RESOURCE_RECEIVER' | translate}}</label></h4>
+                          <div class="ui-g">
+                            <div class="ui-g-12 ui-md-3" style="margin-top: -1.5em;">
+                              <h4><label>{{'SHIPMENT-RESOURCE_RECEIVER' | translate}}</label></h4>
                             </div>
-
+                            <div class="ui-g-12 ui-md-9" style="padding-top: 1.7em; margin-top: -1.5em;">
+                              <p-radioButton [(ngModel)]="customerTypeEnum"
+                                             name="customerTypeEnum"
+                                             value="SENDER"
+                                             formControlName="customerTypeEnum"
+                                             label="{{'SHIPMENT_CAPTURE_COMPONENT_CLIENT' | translate}}"
+                                             id="shipment-capture-component_sender-is-customer"
+                              >
+                              </p-radioButton>
+                            </div>
+                          </div>
                             <div class="ui-g-9">
                                 <p-autoComplete formControlName="receiver"
                                                 field="name"
@@ -91,10 +107,6 @@
                             </div>
                             <div class="ui-g-3">
                                 <button pButton type="button" (click)="createNewCustomer()"label="{{'GENERIC_NEW' | translate}}"></button>
-                            </div>
-
-                            <div class="ui-g-12">
-                                <h4><label>{{'SHIPMENT-RESOURCE_RECEIVER-ADDRESS' | translate}}</label></h4>
                             </div>
 
                             <div class="ui-g-12 ui-md-12 ui-xl-3">
@@ -139,55 +151,43 @@
                             </div>
                         </div>
 
-                        <div class="ui-g-6">
-                            <p-radioButton [(ngModel)]="customerTypeEnum"
-                                           name="customerTypeEnum"
-                                           value="SENDER"
-                                           formControlName="customerTypeEnum"
-                                           label="{{'SHIPMENT_CAPTURE_COMPONENT_CLIENT' | translate}}"
-                                           id="shipment-capture-component_sender-is-customer"
-                            >
-                            </p-radioButton>
-                        </div>
-                        <div class="ui-g-6">
-                            <p-radioButton [(ngModel)]="customerTypeEnum"
-                                           name="customerTypeEnum"
-                                           value="RECEIVER"
-                                           formControlName="customerTypeEnum"
-                                           label="{{'SHIPMENT_CAPTURE_COMPONENT_CLIENT' | translate}}"
-                                           id="shipment-capture-component_receiver-is-customer"
-                            >
-                            </p-radioButton>
-                        </div>
-                    </div>
-                </p-panel>
-            </p-tabPanel>
 
-            <p-tabPanel header="{{'SHIPMENT_CAPTURE_COMPONENT_CARGO-INFORMATION' | translate}}">
-                <p-panel header="{{'SHIPMENT_CAPTURE_COMPONENT_CARGO-INFORMATION' | translate}}">
+
+                    </div>
+
+      <!--<h3>{{'SHIPMENT_CAPTURE_COMPONENT_CARGO-INFORMATION' | translate}}</h3>-->
+
                     <div class="ui-g ui-fluid">
-                        <div class="ui-g-12 ui-md-4">
+                      <div class="ui-g">
+                        <div class="ui-g-12 ui-md-2">
                             <h4><label>{{'SHIPMENT-RESOURCE_NUMBER-OF_PACKETS' | translate}}</label></h4>
-                            <input pInputText formControlName="numberPackages"
-                                   id="shipment-capture-component_cargo_amount-packages"
-                            > <br/>
                         </div>
-                        <div class="ui-g-12 ui-md-4">
+                        <div class="ui-g-12 ui-md-2" style="padding-top: 1.7em;">
+                          <input pInputText formControlName="numberPackages"
+                                 id="shipment-capture-component_cargo_amount-packages"
+                          >
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
                             <h4><label>{{'SHIPMENT-RESOURCE_TOTAL-WEIGHT' | translate}}</label></h4>
-                            <input pInputText formControlName=totalWeight
-                                   id="shipment-capture-component_cargo_weight"
-                            >
                         </div>
-                        <div class="ui-g-12 ui-md-4">
+                        <div class="ui-g-12 ui-md-2"style="padding-top: 1.7em;">
+                          <input pInputText formControlName=totalWeight
+                                 id="shipment-capture-component_cargo_weight"
+                          >
+                        </div>
+                        <div class="ui-g-12 ui-md-2">
                             <h4><label>{{'SHIPMENT-RESOURCE_TOTAL-VOLUME' | translate}}</label></h4>
-                            <input pInputText formControlName="totalCapacity"
-                                   id="shipment-capture-component_cargo_volume"
-                            > <br/>
                         </div>
-                        <div class="ui-g-12 ui-md-10">
+                        <div class="ui-g-12 ui-md-2"style="padding-top: 1.7em;">
+                          <input pInputText formControlName="totalCapacity"
+                                 id="shipment-capture-component_cargo_volume"
+                          >
+                        </div>
+                      </div>
+                        <div class="ui-g-12 ui-md-10" style="margin-top: -1em;">
                             <h4><label>{{'TASK-RESOURCE_DESCRIPTION' | translate}}</label></h4>
                             <textarea pInputTextarea
-                                      rows="10"
+                                      rows="3"
                                       cols="45"
                                       formControlName="cargoDescription"
                                       id="shipment-capture-component_cargo_description"></textarea>
@@ -203,11 +203,10 @@
                             </p-checkbox>
                         </div>
                     </div>
-                </p-panel>
-            </p-tabPanel>
-
-            <p-tabPanel header="{{'SHIPMENT_CAPTURE_COMPONENT_SERVICES' | translate}}">
-                <div class="ui-g fluid ui-g-nopad">
+                  <div class="ui-g fluid ui-g-nopad">
+                  <div class="ui-g-12" style="margin-top: -1em; margin-bottom: -1em;">
+                    <h4><label>{{'SHIPMENT_CAPTURE_COMPONENT_SERVICES' | translate}}</label></h4>
+                  </div>
                     <div class="ui-g-12 ui-lg-4 shipment-capture-component_services">
                         <p-panel header="Export">
                             <p-checkbox [(ngModel)]="preCarriageCheck"
@@ -277,9 +276,6 @@
                         </p-panel>
                     </div>
                 </div>
-
-            </p-tabPanel>
-        </p-tabView>
 
         <div class="ui-g ui-fluid">
             <div class="ui-g-12 ui-md-4 ui-lg-8">

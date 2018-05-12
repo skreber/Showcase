@@ -1,0 +1,57 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <div class="ui-g-12 ui-md-2">
+      <label>{{'INVOICE-CREATION-DATE' | translate}}</label>
+    </div>
+    <div class="ui-g-12 ui-md-4">
+      <input
+        pInputText
+        [(ngModel)]="invoiceCreationDate"
+        type="text"
+      />
+    </div>
+    <div class="ui-g-12 ui-md-2">
+      <label>{{'INVOICE-NUMBER' | translate}}</label>
+    </div>
+    <div class="ui-g-12 ui-md-4">
+      <input
+        pInputText
+        [(ngModel)]="invoiceNumber"
+        type="text"
+      />
+    </div>
+  </div>
+  <!--Table-->
+  <div class="ui-g-12">
+    <p-table>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <!--Invoice Sum of Positions-->
+  <div class="ui-g-12">
+    <div class="ui-g-12 ui-md-2">
+      <label>{{'INVOICE-SUM' | translate }} - {{'CURRENCY' | translate }}:</label>
+    </div>
+    <div class="ui-g-12 ui-md-4">
+      <input
+        pInputText
+        [(ngModel)]="invoicePositionsSum"
+        type="text"
+      />
+    </div>
+  </div>
+</div>
+

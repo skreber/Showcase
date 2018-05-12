@@ -13,7 +13,8 @@ import {ShipmentCapturePageComponent} from "../../shipment-capture/container/shi
     SharedModule,
     FieldsetModule,
     ShipmentCaptureModule,
-    TaskListModule
+    TaskListModule,
+    OrganizeFlightFormModule
   ],
   declarations: [
     CaseUiCenterAreaComponent,
