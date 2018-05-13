@@ -35,8 +35,7 @@ export const SHIPMENT_ROUTES: Routes = [
               { path: "changeShipment", component: ShipmentCapturePageComponent },
               { path: "completeShipment", component: ShipmentCapturePageComponent},
               { path: "organizeFlight", component: OrganizeFlightFormPageComponent},
-              { path: "createInvoice",  component: ShipmentInvoicePageComponent},
-              { path: "createInvoiceOverview", component: ShipmentInvoiceOverviewPageComponent}
+              { path: "createInvoice",  component: ShipmentInvoicePageComponent}
             ]
     },
     {

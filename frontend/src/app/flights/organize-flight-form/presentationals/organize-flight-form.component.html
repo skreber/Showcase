@@ -1,22 +1,22 @@
-<h3>{{'FLIGHT-ORGANIZE'|translate}}</h3>
+<!--<h3>{{'FLIGHT-ORGANIZE'|translate}}</h3>-->
   <div class="main-div ui-g">
 
     <div class="ui-g">
-      <div class="top-div ui-g-12">
-        <div class="ui-g-12 ui-md-2">
-          <label>{{'FLIGHT-NUMBER' | translate}}</label>
+      <div class="top-div ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-1" style="margin-top: -1em; margin-right: 1em;">
+          <h4><label>{{'FLIGHT-NUMBER' | translate}}</label></h4>
         </div>
-        <div class="ui-g-12 ui-md-10">
+        <div class="ui-g-12 ui-md-3">
           <input
             pInputText
             [(ngModel)]="flightNumber"
             type="text"
           >
         </div>
-        <div class="ui-g-12 ui-md-2">
-          <label>{{'FLIGHT-AIRLINE' | translate}}</label>
+        <div class="ui-g-12 ui-md-2" style="margin-top: -1em; margin-right: 1em;">
+          <h4><label>{{'FLIGHT-AIRLINE' | translate}}</label></h4>
         </div>
-        <div class="ui-g-12 ui-md-10">
+        <div class="ui-g-12 ui-md-2">
           <p-autoComplete placeholder="Airline"
                           field="name"
                           [(ngModel)]="selectedAirline"
@@ -25,10 +25,10 @@
                           (onSelect)="onAirlineSelected($event)"
           ></p-autoComplete>
         </div>
-        <div class="ui-g-12 ui-md-2">
-          <label>{{'FLIGHT-PRICE' | translate}}</label>
+        <div class="ui-g-12 ui-md-1" style="margin-top: -1em; margin-right: 1em;">
+          <h4><label>{{'FLIGHT-PRICE' | translate}}</label></h4>
         </div>
-        <div class="ui-g-12 ui-md-10">
+        <div class="ui-g-12 ui-md-2">
           <input
             pInputText
             [(ngModel)]="price"
